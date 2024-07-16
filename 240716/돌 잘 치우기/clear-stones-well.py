@@ -28,11 +28,10 @@ dx = [1,-1,0,0]
 max_count = 0
 
 def bfs(y,x):
+    global count
     q = deque()
     q.append((y,x))
-    visited = [[0]*(n) for _ in range(n)]
     visited[y][x] = 1
-    count = 1
     while q:
         y,x = q.popleft()
         for i in range(4):
@@ -43,16 +42,19 @@ def bfs(y,x):
                     visited[ny][nx] = 1
                     count = count+1
                     q.append((ny,nx))
-    return count
 
 for i in comb:
     for p in i:
         y,x = p
         graph[y][x] = 0
+    visited = [[0]*(n) for _ in range(n)]
+    count = 0
     for k in start_point:
             r,c = k
-            count = bfs(r-1,c-1)
-            max_count = max(max_count,count)    
+            if visited[r-1][c-1] == 0:
+                count = count+1
+                bfs(r-1,c-1) 
+    max_count = max(count,max_count)   
     for p in i:
         y,x = p
         graph[y][x] = 1
