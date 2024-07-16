@@ -39,7 +39,7 @@ def bfs(a,b,limit):
                         elif max_y==ny:
                             if max_x>nx:
                                 max_x = nx
-    if max_x == a and max_y == b:
+    if max_x == b and max_y == a:
         flag = 1
     return max_y,max_x,flag
 
