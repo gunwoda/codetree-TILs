@@ -33,5 +33,7 @@ total_score = 0
 visited = [[0]*(n) for _ in range(n)]
 for i in start_point:
     y,x = i
+    y = y-1
+    x = x-1
     total_score = total_score+bfs(y,x)
 print(total_score)
