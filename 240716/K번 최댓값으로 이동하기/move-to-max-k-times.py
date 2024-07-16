@@ -18,6 +18,7 @@ def bfs(a,b,limit):
     max_v = 0
     max_x = b
     max_y = a
+    flag = 0
     while q:
         y,x = q.popleft()
         for i in range(4):
@@ -38,12 +39,16 @@ def bfs(a,b,limit):
                         elif max_y==ny:
                             if max_x>nx:
                                 max_x = nx
-    return max_y,max_x
+    if max_x == a and max_y == b:
+        flag = 1
+    return max_y,max_x,flag
 
 visited = [[0]*(n) for _ in range(n)]
-x,y = bfs(r-1,c-1,graph[r-1][c-1])
-
-for i in range(k-1):
-    visited = [[0]*(n) for _ in range(n)]
-    y,x = bfs(y,x,graph[y][x])
+x,y,flag = bfs(r-1,c-1,graph[r-1][c-1])
+if flag==0:
+    for i in range(k-1):
+        visited = [[0]*(n) for _ in range(n)]
+        y,x,flag = bfs(y,x,graph[y][x])
+        if flag == 1:
+            break
 print(y+1,x+1)
