@@ -17,9 +17,10 @@ dx = [1,-1,0,0]
 def bfs(y,x):
     q = deque()
     q.append((y,x))
-    count = 0
+    count = 1
     while q:
         y,x = q.popleft()
+        visited[y][x] = 1
         for i in range(4):
             ny = dy[i] + y
             nx = dx[i] + x
@@ -35,5 +36,6 @@ for i in start_point:
     y,x = i
     y = y-1
     x = x-1
-    total_score = total_score+bfs(y,x)
+    if visited[y][x] == 0:
+        total_score = total_score+bfs(y,x)
 print(total_score)
