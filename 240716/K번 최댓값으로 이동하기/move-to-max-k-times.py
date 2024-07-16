@@ -25,7 +25,7 @@ def bfs(a,b,limit):
             ny = y+dy[i]
             nx = x+dx[i]
             if 0<=ny<n and 0<=nx<n:
-                if graph[ny][nx]<limit and visited[ny][nx] == 0:
+                if graph[ny][nx]<=limit and visited[ny][nx] == 0:
                     visited[ny][nx] = 1
                     q.append((ny,nx))
                     if max_v<graph[ny][nx]:
